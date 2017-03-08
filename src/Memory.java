@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Project: Y86-Simulator
@@ -46,7 +43,7 @@ public class Memory {
         return left32 << offset | right32 >>> 1 >>> (31 - offset);
     }
 
-    public Iterable<MemoLine> changedMemory() {
+    public List<MemoLine> changedMemory() {
         if (memo.isEmpty()) return null;
 
         ArrayList<MemoLine> lines = new ArrayList<>();
@@ -63,10 +60,5 @@ public class Memory {
         });
 
         return lines;
-    }
-
-    public static void main(String[] args) {
-        Memory m = new Memory();
-
     }
 }

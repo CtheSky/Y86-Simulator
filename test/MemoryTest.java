@@ -1,6 +1,7 @@
 import org.junit.Test;
 
 import java.util.Iterator;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -22,13 +23,16 @@ public class MemoryTest {
         assertEquals(memo.get(0), 0x00ffffff);
         assertEquals(memo.get(32), 0xff000000);
 
-        Iterator<Memory.MemoLine> iter = memo.changedMemory().iterator();
-        Memory.MemoLine line1 = iter.next();
+        List<Memory.MemoLine> changed = memo.changedMemory();
+        assertEquals(changed.size(), 2);
+
+        Memory.MemoLine line1 = changed.get(0);
         assertEquals(line1.address, 0);
         assertEquals(line1.content, 0x00ffffff);
-        Memory.MemoLine line2 = iter.next();
+
+        Memory.MemoLine line2 = changed.get(1);
         assertEquals(line2.address, 32);
         assertEquals(line2.content, 0xff000000);
-        assertFalse(iter.hasNext());
+
     }
 }
