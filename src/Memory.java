@@ -33,6 +33,18 @@ public class Memory {
         memo.put(alignAddr + 32, right32);
     }
 
+    public void set(int addr, int content, int size) {
+        if (size <= 0) return;
+        else if (size > 4) throw new IllegalArgumentException("Memory.set(int addr, int content, int size):size shouldn't be greater than 4.");
+
+        int origin = get(addr);
+        int mask = (1 << 8 * (4 - size)) - 1;
+        content <<= 8 * (4 - size);
+        content = origin & mask | content;
+
+        set(addr, content);
+    }
+
     public int get(int addr) {
         int alignAddr = addr & 0xffffffe0;
         int offset = addr & 0x0000001f;
@@ -60,5 +72,9 @@ public class Memory {
         });
 
         return lines;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(Integer.decode("11"));
     }
 }
