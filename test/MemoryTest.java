@@ -18,7 +18,7 @@ public class MemoryTest {
         Memory memo = new Memory();
         assertNull(memo.changedMemory());
 
-        memo.set(0x8, 0xffffffff);
+        memo.set(0x8, 0xffffffff, 4);
         assertEquals(memo.get(8), 0xffffffff);
         assertEquals(memo.get(0), 0x00ffffff);
         assertEquals(memo.get(32), 0xff000000);
@@ -34,5 +34,19 @@ public class MemoryTest {
         assertEquals(line2.address, 32);
         assertEquals(line2.content, 0xff000000);
 
+        memo.set(0x8, 0, 1);
+        assertEquals(memo.get(8), 0x00ffffff);
+        assertEquals(memo.get(0), 0x0000ffff);
+        assertEquals(memo.get(32), 0xff000000);
+
+        memo.set(0x8, 0xeeee, 2);
+        assertEquals(memo.get(8), 0xeeeeffff);
+        assertEquals(memo.get(0), 0x00eeeeff);
+        assertEquals(memo.get(32), 0xff000000);
+
+        memo.set(0x8, 0x0000ff,3);
+        assertEquals(memo.get(8), 0x0000ffff);
+        assertEquals(memo.get(0), 0x000000ff);
+        assertEquals(memo.get(32), 0xff000000);
     }
 }
