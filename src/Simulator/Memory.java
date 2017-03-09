@@ -62,7 +62,7 @@ public class Memory {
             throw new IllegalArgumentException("Simulator.Memory.set(int addr, int content, int size):size should be 1~4.");
 
         int content = get(addr);
-        return content >> (4 - size) * 8;
+        return content >>> (4 - size) * 8;
     }
 
     public int getByteReversed(int addr, int size) {
@@ -74,6 +74,16 @@ public class Memory {
             content >>= 8;
         }
         return reversed;
+    }
+
+    public void setByteReversed(int addr, int content, int size) {
+        int reversed = 0;
+        for (int i = 0; i < size; i++) {
+            reversed <<= 8;
+            reversed |= content & 0xff;
+            content >>= 8;
+        }
+        set(addr, reversed, size);
     }
 
     public List<MemoLine> changedMemory() {
