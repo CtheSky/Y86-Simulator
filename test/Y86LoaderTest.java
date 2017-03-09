@@ -1,3 +1,5 @@
+import Simulator.Memory;
+import Simulator.Y86Loader;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

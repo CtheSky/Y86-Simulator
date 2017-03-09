@@ -1,3 +1,5 @@
+package Simulator;
+
 import java.util.*;
 
 /**
@@ -35,7 +37,7 @@ public class Memory {
 
     public void set(int addr, int content, int size) {
         if (size <= 0) return;
-        else if (size > 4) throw new IllegalArgumentException("Memory.set(int addr, int content, int size):size shouldn't be greater than 4.");
+        else if (size > 4) throw new IllegalArgumentException("Simulator.Memory.set(int addr, int content, int size):size shouldn't be greater than 4.");
 
         int origin = get(addr);
         int mask = (1 << 8 * (4 - size)) - 1;
