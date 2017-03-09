@@ -65,6 +65,17 @@ public class Memory {
         return content >> (4 - size) * 8;
     }
 
+    public int getByteReversed(int addr, int size) {
+        int content = get(addr, size);
+        int reversed = 0;
+        for (int i = 0; i < size; i++) {
+            reversed <<= 8;
+            reversed |= content & 0xff;
+            content >>= 8;
+        }
+        return reversed;
+    }
+
     public List<MemoLine> changedMemory() {
         if (memo.isEmpty()) return null;
 

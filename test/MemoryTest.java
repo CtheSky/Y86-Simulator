@@ -47,6 +47,10 @@ public class MemoryTest {
         assertEquals(memo.get(0, 2), 0x00ee);
         assertEquals(memo.get(0, 3), 0x00eeee);
         assertEquals(memo.get(0, 4), 0x00eeeeff);
+        assertEquals(memo.getByteReversed(0, 1), 0x00);
+        assertEquals(memo.getByteReversed(0, 2), 0xee00);
+        assertEquals(memo.getByteReversed(0, 3), 0xeeee00);
+        assertEquals(memo.getByteReversed(0, 4), 0xffeeee00);
 
         memo.set(0x8, 0x0000ff,3);
         assertEquals(memo.get(8), 0x0000ffff);
