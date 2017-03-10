@@ -12,7 +12,7 @@ import Simulator.Y86Simulator;
 public class subl extends opl {
     @Override
     public int op(int a, int b) {
-        return a - b;
+        return b - a;
     }
 
     @Override
