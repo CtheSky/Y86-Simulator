@@ -60,4 +60,44 @@ public class Y86SimulatorTest {
             System.out.println("could not find file: asum.yo");
         }
     }
+
+    @Test
+    public void abs_asum_cmovTest() {
+        try {
+            URL url = Y86LoaderTest.class.getResource("y86code/abs-asum-cmov.yo");
+            String input = new Scanner(new File(url.getPath())).useDelimiter("\\Z").next();
+
+            String[] lines = input.split("\n");
+            Memory memo = new Memory();
+            Y86Loader.load(lines, memo);
+
+            Y86Simulator simulator = new Y86Simulator(memo);
+            simulator.run();
+
+            // Status
+            assertEquals(2, simulator.stat);
+
+            // Condition Codes
+            assertTrue(simulator.ZF);
+            assertFalse(simulator.SF);
+            assertFalse(simulator.OF);
+
+            // Changed Register State
+            assertEquals(0x0000abcd, simulator.registers[0].value);
+            assertEquals(0x00000024, simulator.registers[1].value);
+            assertEquals(0xffffffff, simulator.registers[3].value);
+            assertEquals(0x000000f8, simulator.registers[4].value);
+            assertEquals(0x00000100, simulator.registers[5].value);
+            assertEquals(0x0000a000, simulator.registers[6].value);
+            assertEquals(0x0000a000, simulator.registers[7].value);
+
+            // Changed Memory State
+            assertEquals(0x00000100, memo.getByteReversed(0x00f0 * 8, 4));
+            assertEquals(0x00000039, memo.getByteReversed(0x00f4 * 8, 4));
+            assertEquals(0x00000014, memo.getByteReversed(0x00f8 * 8, 4));
+            assertEquals(0x00000004, memo.getByteReversed(0x00fc * 8, 4));
+        } catch (FileNotFoundException e) {
+            System.out.println("could not find file: asum.yo");
+        }
+    }
 }
