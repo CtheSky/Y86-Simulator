@@ -12,6 +12,6 @@ import Simulator.Y86Simulator;
 public class cmovg extends cmovXX {
     @Override
     public boolean cond(Y86Simulator simulator) {
-        return !(simulator.SF != simulator.OF) || !simulator.ZF;
+        return !(simulator.SF != simulator.OF) && !simulator.ZF;
     }
 }
