@@ -43,6 +43,46 @@ public class Y86Simulator {
         }
     }
 
+    public String getResult() {
+        String state = "State: " + getStateString();
+
+        String pc = "PC: " + "0x" + PC;
+
+        String cc = "Condition Codes: " +
+                " ZF: " + (ZF ? "1": "0") +
+                " SF: " + (SF ? "1": "0") +
+                " OF: " + (OF ? "1": "0");
+
+        String registerInfo = "Changed Register State:\n";
+        for (Register r : registers) {
+            String value = Integer.toHexString(r.value);
+            if (value.length() < 8)
+                value = "00000000".substring(0, 8 - value.length()) + value;
+            registerInfo += r.name + ":0x00000000     " + "0x" + value + "\n";
+        }
+
+        String memoryInfo = "Changed Memory State:\n";
+        for (Memory.MemoLine ml : memory.changedMemory()) {
+            String addr = Integer.toHexString(ml.address / 8);
+            if (addr.length() < 4)
+                addr = "0000".substring(0, 4 - addr.length()) + addr;
+            String content = Integer.toHexString(ml.content);
+            if (content.length() < 8)
+                content = "00000000".substring(0, 8 - content.length()) + content;
+            memoryInfo += "0x" + addr + ":00000000     " + "0x" + content + "\n";
+        }
+
+        return state + "\n" + pc + "\n" + cc + "\n" + registerInfo + memoryInfo;
+    }
+
+    public String getStateString() {
+        if (stat == 1) return "AOK";
+        if (stat == 2) return "HLT";
+        if (stat == 3) return "ADR";
+        if (stat == 4) return "INS";
+        return "Unknown State";
+    }
+
     private Instruction fetch() {
         int byte1 = memory.get(PC * 8, 1);
         int first = byte1 >> 4, second = byte1 & 0x0f;
