@@ -57,7 +57,7 @@ public class Y86SimulatorTest {
             assertEquals(0x00000100, memo.getByteReversed(0x00f8 * 8, 4));
             assertEquals(0x00000011, memo.getByteReversed(0x00fc * 8, 4));
         } catch (FileNotFoundException e) {
-            System.out.println("could not find file: asum.yo");
+            System.err.println("could not find file: asum.yo");
         }
     }
 
@@ -97,7 +97,7 @@ public class Y86SimulatorTest {
             assertEquals(0x00000014, memo.getByteReversed(0x00f8 * 8, 4));
             assertEquals(0x00000004, memo.getByteReversed(0x00fc * 8, 4));
         } catch (FileNotFoundException e) {
-            System.out.println("could not find file: abs-asum-cmov.yo");
+            System.err.println("could not find file: abs-asum-cmov.yo");
         }
     }
 
@@ -137,7 +137,7 @@ public class Y86SimulatorTest {
             assertEquals(0x00000014, memo.getByteReversed(0x00f8 * 8, 4));
             assertEquals(0x00000004, memo.getByteReversed(0x00fc * 8, 4));
         } catch (FileNotFoundException e) {
-            System.out.println("could not find file: abs-asum-jmp.yo");
+            System.err.println("could not find file: abs-asum-jmp.yo");
         }
     }
 }

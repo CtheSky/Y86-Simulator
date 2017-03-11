@@ -32,7 +32,7 @@ public class Y86LoaderTest {
             assertEquals(memo.get(0x38 * 8), 0x80420000);
             assertEquals(memo.get(0x73 * 8), 0x745b0000);
         } catch (FileNotFoundException e) {
-            System.out.println("could not find file: asum.yo");
+            System.err.println("could not find file: asum.yo");
         }
     }
 }
