@@ -92,7 +92,8 @@ public class Memory {
         ArrayList<MemoLine> lines = new ArrayList<>();
         for (int addr : memo.keySet()) {
             MemoLine line = new MemoLine(addr, memo.get(addr));
-            lines.add(line);
+            if (line.content != 0)
+                lines.add(line);
         }
 
         lines.sort(new Comparator<MemoLine>() {
