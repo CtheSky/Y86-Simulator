@@ -32,14 +32,10 @@ public class Y86Simulator {
         stat = 1;
     }
 
-    public void run() {
+    public void run() throws IllegalStateException {
         while (stat == 1) {
-            try {
-                Instruction instruction = fetch();
-                execute(instruction);
-            } catch (IllegalStateException e) {
-                break;
-            }
+            Instruction instruction = fetch();
+            execute(instruction);
         }
     }
 
@@ -125,7 +121,10 @@ public class Y86Simulator {
             case 11: return new popl();
             default:
                 stat = 4;
-                throw new IllegalStateException();
+                String address = "address -> 0x" + Integer.toHexString(PC);
+                String content = "content -> 0x" + Integer.toHexString(byte1);
+                String msg = "Invalid instruction: " + address + content;
+                throw new IllegalStateException(msg);
         }
     }
 
