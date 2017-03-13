@@ -21,6 +21,11 @@ public class Memory {
         }
     }
 
+    /**
+     * Set the 32-bit content at given address
+     * @param addr      int value representing address
+     * @param content  int value representing 32-bit content
+     */
     public void set(int addr, int content) {
         int alignAddr = addr & 0xffffffe0;
         int offset = addr & 0x0000001f;
@@ -35,6 +40,11 @@ public class Memory {
         memo.put(alignAddr + 32, right32);
     }
 
+    /**
+     * Set the [size * 8]-bit content at given address
+     * @param addr      int value representing address
+     * @param content  int value representing [size * 8] content, range from 0 to 4
+     */
     public void set(int addr, int content, int size) {
         if (size <= 0 || size > 4)
             throw new IllegalArgumentException("Simulator.Memory.set(int addr, int content, int size):size should be 1~4.");
@@ -47,6 +57,11 @@ public class Memory {
         set(addr, content);
     }
 
+    /**
+     * Get the 32-bit content at given address
+     * @param addr     int value representing address
+     * @return         int value representing 32-bit content
+     */
     public int get(int addr) {
         int alignAddr = addr & 0xffffffe0;
         int offset = addr & 0x0000001f;
@@ -57,6 +72,12 @@ public class Memory {
         return left32 << offset | right32 >>> 1 >>> (31 - offset);
     }
 
+    /**
+     * Get the [size * 8]-bit content at given address
+     * @param addr     int value representing address
+     * @param size     int value representing how much byte of content to get
+     * @return         int value representing [size * 8]-bit content, size
+     */
     public int get(int addr, int size) {
         if (size <= 0 || size > 4)
             throw new IllegalArgumentException("Simulator.Memory.set(int addr, int content, int size):size should be 1~4.");
@@ -65,6 +86,13 @@ public class Memory {
         return content >>> (4 - size) * 8;
     }
 
+    /**
+     * Get the [size * 8]-bit content at given address in byte reversed order
+     *   suppose original content is 0x04030201, returns 0x01020304
+     * @param addr     int value representing address
+     * @param size     int value representing how much byte of content to get
+     * @return         int value representing [size * 8]-bit content, size
+     */
     public int getByteReversed(int addr, int size) {
         int content = get(addr, size);
         int reversed = 0;
@@ -76,6 +104,13 @@ public class Memory {
         return reversed;
     }
 
+    /**
+     * Set the [size * 8]-bit content at given address in byte reversed order
+     *   suppose given content is 0x04030201, set memory to be 0x01020304
+     * @param addr     int value representing address
+     * @param content int value representing [size * 8]-bit content, size
+     * @param size     int value representing how much byte of content to get
+     */
     public void setByteReversed(int addr, int content, int size) {
         int reversed = 0;
         for (int i = 0; i < size; i++) {
@@ -86,6 +121,10 @@ public class Memory {
         set(addr, reversed, size);
     }
 
+    /**
+     * Returns changed memory info
+     * @return     List of MemoLine, which has two int field: address, content
+     */
     public List<MemoLine> changedMemory() {
         if (memo.isEmpty()) return null;
 
@@ -104,9 +143,5 @@ public class Memory {
         });
 
         return lines;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(Integer.decode("11"));
     }
 }
