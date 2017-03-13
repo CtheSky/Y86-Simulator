@@ -10,6 +10,11 @@ import java.util.regex.Pattern;
  * All rights reserved.
  */
 public class Y86Loader {
+    /**
+     * Load y86 code into Memory object
+     * @param y86      Array of String representing lines of y86's *.yo file
+     * @param memo     Memory Object to load y86 code into
+     */
     public static void load(String[] y86, Memory memo) {
         for (String line: y86) {
             String[] fields = line.trim().split("\\s+");
@@ -35,9 +40,5 @@ public class Y86Loader {
     private static boolean hasContent(String[] fields) {
         return Pattern.matches("0x[0-9a-fA-F]+:", fields[0]) &&
                 Pattern.matches("[0-9a-fA-F]+", fields[1]);
-    }
-
-    public static void main(String[] args) {
-        System.out.println(Integer.parseInt("8000", 16));
     }
 }
