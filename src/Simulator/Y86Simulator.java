@@ -16,6 +16,10 @@ public class Y86Simulator {
     public int PC;
     public int stat;
 
+    /**
+     * Initialize simulator with given memory
+     * @param memory    Memory object with y86 code loaded
+     */
     public Y86Simulator(Memory memory) {
         registers = new Register[8];
         registers[0] = new Register("%eax");
@@ -32,6 +36,10 @@ public class Y86Simulator {
         stat = 1;
     }
 
+    /**
+     * Simulate y86 code loaded
+     * @throws IllegalStateException   when error occurs during execution
+     */
     public void run() throws IllegalStateException {
         while (stat == 1) {
             Instruction instruction = fetch();
@@ -39,6 +47,10 @@ public class Y86Simulator {
         }
     }
 
+    /**
+     * Returns a well-formatted representing all info of simulator
+     * @return String
+     */
     public String getResult() {
         String state = "State: " + getStateString();
 
@@ -71,6 +83,10 @@ public class Y86Simulator {
         return state + "\n" + pc + "\n" + cc + "\n" + registerInfo + memoryInfo;
     }
 
+    /**
+     * Return state of simulator
+     * @return String
+     */
     public String getStateString() {
         if (stat == 1) return "AOK";
         if (stat == 2) return "HLT";
