@@ -2,6 +2,9 @@ package Simulator;
 
 import Instructions.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Project: Y86-Simulator
  * Author: CtheSky
@@ -15,6 +18,7 @@ public class Y86Simulator {
     public boolean ZF, SF, OF;
     public int PC;
     public int stat;
+    public Map<Integer, Integer> breakpoints;
 
     /**
      * Initialize simulator with given memory
@@ -34,14 +38,39 @@ public class Y86Simulator {
         this.memory = memory;
         PC = 0;
         stat = 1;
+        breakpoints = new HashMap<>();
     }
 
     /**
-     * Simulate y86 code loaded
+     * Run y86 code loaded
      * @throws IllegalStateException   when error occurs during execution
      */
     public void run() throws IllegalStateException {
         while (stat == 1) {
+            Instruction instruction = fetch();
+            execute(instruction);
+        }
+    }
+
+    /**
+     * Run the code until a breakpoint is reached
+     * @throws IllegalStateException   when error occurs during execution
+     */
+    public void continueToBreakpoint() throws IllegalStateException {
+        while (stat == 1) {
+            Instruction instruction = fetch();
+            execute(instruction);
+            if (breakpoints.containsKey(PC))
+                break;
+        }
+    }
+
+    /**
+     * Run only one instruction
+     * @throws IllegalStateException
+     */
+    public void step() throws IllegalStateException {
+        if (stat == 1) {
             Instruction instruction = fetch();
             execute(instruction);
         }
@@ -93,6 +122,25 @@ public class Y86Simulator {
         if (stat == 3) return "ADR";
         if (stat == 4) return "INS";
         return "Unknown State";
+    }
+
+    /**
+     * Returns the register object of given name, return null when name doesn't match any register
+     * @param name    String of register name
+     * @return        According register object
+     */
+    public Register getRegister(String name) {
+        switch (name) {
+            case "%eax": return registers[0];
+            case "%ecx": return registers[1];
+            case "%edx": return registers[2];
+            case "%ebx": return registers[3];
+            case "%esp": return registers[4];
+            case "%ebp": return registers[5];
+            case "%esi": return registers[6];
+            case "%edi": return registers[7];
+            default: return null;
+        }
     }
 
     private Instruction fetch() {
