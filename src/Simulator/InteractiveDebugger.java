@@ -126,6 +126,22 @@ public class InteractiveDebugger {
                     break;
                 }
 
+                // help -- print available commands
+                if (input.equals("help") || input.equals("?")) {
+                    String help = "Supported commands:\n";
+                    help += "break/b <lineNum>  -- add breakpoint at given line\n";
+                    help += "run/r              -- run the program\n";
+                    help += "continue/c         -- run into next breakpoint\n";
+                    help += "step/s             -- run next instruction\n";
+                    help += "display all        -- print all simulator status\n";
+                    help += "display <address>  -- print 32-bit content at given address\n";
+                    help += "display <register> -- print 32-bit content of given register\n";
+                    help += "list all           -- print all loaded y86 code\n";
+                    help += "list <n>           -- print 10 lines of y86 code around line n\n";
+                    help += "quit/q             -- exit interactive debug mode\n";
+                    System.out.println(help);
+                }
+
                 System.out.print("(gdb)");
             }
         } catch (FileNotFoundException e) {
