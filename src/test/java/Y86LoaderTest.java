@@ -1,12 +1,13 @@
 import Simulator.Memory;
 import Simulator.Y86Loader;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.Scanner;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Project: Y86-Simulator
@@ -20,7 +21,7 @@ public class Y86LoaderTest {
     @Test
     public void asumTest() {
         try {
-            URL url = Y86LoaderTest.class.getResource("y86code/asum.yo");
+            URL url = Y86LoaderTest.class.getResource("resources/asum.yo");
             String input = new Scanner(new File(url.getPath())).useDelimiter("\\Z").next();
 
             String[] lines = input.split("\n");

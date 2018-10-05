@@ -8,9 +8,7 @@ import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.Scanner;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Project: Y86-Simulator
@@ -23,7 +21,7 @@ public class Y86SimulatorTest {
     @Test
     public void asumTest() {
         try {
-            URL url = Y86LoaderTest.class.getResource("y86code/asum.yo");
+            URL url = Y86LoaderTest.class.getResource("resources/asum.yo");
             String input = new Scanner(new File(url.getPath())).useDelimiter("\\Z").next();
 
             String[] lines = input.split("\n");
@@ -64,7 +62,7 @@ public class Y86SimulatorTest {
     @Test
     public void abs_asum_cmovTest() {
         try {
-            URL url = Y86LoaderTest.class.getResource("y86code/abs-asum-cmov.yo");
+            URL url = Y86LoaderTest.class.getResource("resources/abs-asum-cmov.yo");
             String input = new Scanner(new File(url.getPath())).useDelimiter("\\Z").next();
 
             String[] lines = input.split("\n");
@@ -104,7 +102,7 @@ public class Y86SimulatorTest {
     @Test
     public void abs_asum_jmpTest() {
         try {
-            URL url = Y86LoaderTest.class.getResource("y86code/abs-asum-jmp.yo");
+            URL url = Y86LoaderTest.class.getResource("resources/abs-asum-jmp.yo");
             String input = new Scanner(new File(url.getPath())).useDelimiter("\\Z").next();
 
             String[] lines = input.split("\n");

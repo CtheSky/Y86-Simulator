@@ -14,14 +14,22 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         if(args.length == 0) {
+
             System.err.println("No arguments were given");
+
         } else if(args[0].equals("-debug")) {
-            if (args.length < 2)
+
+            if (args.length < 2) {
+
                 System.out.println("Need one more argument <filename>");
-            else {
+
+            } else {
+
                 File file = new File(args[1]);
                 InteractiveDebugger.debug(file);
+
             }
+
         } else {
             try {
                 File file = new File(args[0]);
