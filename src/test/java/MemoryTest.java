@@ -1,4 +1,4 @@
-import Simulator.Memory;
+import net.cthesky.y86.Simulator.Memory;
 import org.junit.Test;
 
 import java.util.List;
@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 /**
- * Project: Y86-Simulator
+ * Project: Y86-net.cthesky.y86.Simulator
  * Author: CtheSky
  * Create Date: 2017/3/7
  * Description:

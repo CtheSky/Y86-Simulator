@@ -15,7 +15,7 @@ plugins {
 }
 
 // Define the main class for the application
-mainClassName = 'Simulator.Main'
+mainClassName = 'net.cthesky.y86.Simulator.Main'
 
 dependencies {
     testCompile 'junit:junit:4.12'

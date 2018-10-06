@@ -1,4 +1,4 @@
-# Y86-Simulator
+# Y86-net.cthesky.y86.Simulator
 
 
 This is a simulator for Y86 assembly language written in Java. 
@@ -6,7 +6,7 @@ See more about [Y86 Instruction Set Architecture](http://acm.hit.edu.cn/hoj/stat
 
 # Usage
 ### Simulate code
-You could download `Y86Simulator.jar` in [release](https://github.com/CtheSky/Y86-Simulator/releases).
+You could download `Y86Simulator.jar` in [release](https://github.com/CtheSky/Y86-net.cthesky.y86.Simulator/releases).
 ```shell
 >java -jar Y86Simulator.jar asum.yo
 State: HLT
@@ -48,7 +48,7 @@ quit/q             -- exit interactive debug mode
 ...
 ```
 ### Use as a lib
-The entry-point of `Y86Simulator.jar` is `Simulator.Main` class which gives a simple example:
+The entry-point of `Y86Simulator.jar` is `net.cthesky.y86.Simulator.Main` class which gives a simple example:
 ```java
 File file = new File(args[0]);
 
@@ -60,7 +60,7 @@ String[] lines = input.split("\n");
 Memory memo = new Memory();
 Y86Loader.load(lines, memo);
 
-// Create Simulator with Memory set above and run code
+net.cthesknet.cthesky.y86.Simulatorulator
 Y86Simulator simulator = new Y86Simulator(memo);
 simulator.run();
 

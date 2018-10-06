@@ -1,6 +1,6 @@
-import Simulator.Memory;
-import Simulator.Y86Loader;
-import Simulator.Y86Simulator;
+import net.cthesky.y86.Simulator.Memory;
+import net.cthesky.y86.Simulator.Y86Loader;
+import net.cthesky.y86.Simulator.Y86Simulator;
 import org.junit.Test;
 
 import java.io.File;
@@ -11,7 +11,7 @@ import java.util.Scanner;
 import static org.junit.Assert.*;
 
 /**
- * Project: Y86-Simulator
+ * Project: Y86-net.cthesky.y86.Simulator
  * Author: CtheSky
  * Create Date: 2017/3/9
  * Description:
