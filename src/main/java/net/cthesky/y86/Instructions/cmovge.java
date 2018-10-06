@@ -12,6 +12,6 @@ import net.cthesky.y86.Simulator.Y86Simulator;
 public class cmovge extends cmovXX {
     @Override
     public boolean cond(Y86Simulator simulator) {
-        return !(simulator.SF != simulator.OF);
+        return simulator.SF == simulator.OF;
     }
 }

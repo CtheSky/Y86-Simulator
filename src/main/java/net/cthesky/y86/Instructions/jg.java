@@ -12,6 +12,6 @@ import net.cthesky.y86.Simulator.Y86Simulator;
 public class jg extends jXX {
     @Override
     public boolean cond(Y86Simulator simulator) {
-        return !(simulator.SF != simulator.OF) && !simulator.ZF;
+        return simulator.SF == simulator.OF && !simulator.ZF;
     }
 }

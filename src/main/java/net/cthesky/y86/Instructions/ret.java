@@ -12,8 +12,6 @@ import net.cthesky.y86.Simulator.Y86Simulator;
 public class ret implements Instruction {
     @Override
     public void execute(Y86Simulator simulator) {
-        int pc = simulator.PC;
-
         Y86Simulator.Register esp = simulator.registers[4];
 
         int valM = simulator.memory.getByteReversed(esp.value * 8, 4);
