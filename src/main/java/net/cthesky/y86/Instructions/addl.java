@@ -20,6 +20,6 @@ public class addl extends opl {
         int t = op(a, b);
         simulator.ZF = t == 0;
         simulator.SF = t < 0;
-        simulator.OF = (a < 0 == t < 0) && (t < 0 != a < 0);
+        simulator.OF = (a < 0 == b < 0) && (t < 0 != a < 0);
     }
 }
