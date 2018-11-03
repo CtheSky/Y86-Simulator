@@ -81,7 +81,7 @@ public class Y86SimulatorTest {
             assertFalse(simulator.OF);
 
             // Changed Register State
-//            assertEquals(0x0000abcd, simulator.registers[0].value);
+            assertEquals(0x000095b3, simulator.registers[0].value);
             assertEquals(0x00000024, simulator.registers[1].value);
             assertEquals(0xffffffff, simulator.registers[3].value);
             assertEquals(0x000000f8, simulator.registers[4].value);
@@ -121,7 +121,7 @@ public class Y86SimulatorTest {
             assertFalse(simulator.OF);
 
             // Changed Register State
-//            assertEquals(0x0000abcd, simulator.registers[0].value);
+            assertEquals(0x000095b3, simulator.registers[0].value);
             assertEquals(0x00000024, simulator.registers[1].value);
             assertEquals(0xffffffff, simulator.registers[3].value);
             assertEquals(0x000000f8, simulator.registers[4].value);
