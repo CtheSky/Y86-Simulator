@@ -10,6 +10,12 @@ import net.cthesky.y86.Simulator.Y86Simulator;
  * All rights reserved.
  */
 public class halt implements Instruction{
+
+    @Override
+    public byte firstByte() {
+        return (byte)0x00;
+    }
+
     @Override
     public void execute(Y86Simulator simulator) {
         simulator.stat = 2;

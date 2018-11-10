@@ -10,6 +10,12 @@ import net.cthesky.y86.Simulator.Y86Simulator;
  * All rights reserved.
  */
 public class cmove extends cmovXX {
+
+    @Override
+    public byte firstByte() {
+        return (byte)0x23;
+    }
+
     @Override
     public boolean cond(Y86Simulator simulator) {
         return simulator.ZF;

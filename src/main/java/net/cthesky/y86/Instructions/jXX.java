@@ -10,6 +10,10 @@ import net.cthesky.y86.Simulator.Y86Simulator;
  * All rights reserved.
  */
 public abstract class jXX implements Instruction {
+
+    @Override
+    abstract public byte firstByte();
+
     @Override
     public void execute(Y86Simulator simulator) {
         int pc = simulator.PC;

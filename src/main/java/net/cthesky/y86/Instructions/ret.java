@@ -10,6 +10,12 @@ import net.cthesky.y86.Simulator.Y86Simulator;
  * All rights reserved.
  */
 public class ret implements Instruction {
+
+    @Override
+    public byte firstByte() {
+        return (byte)0x90;
+    }
+
     @Override
     public void execute(Y86Simulator simulator) {
         Y86Simulator.Register esp = simulator.registers[4];

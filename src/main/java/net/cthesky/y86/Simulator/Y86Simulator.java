@@ -144,52 +144,18 @@ public class Y86Simulator {
     }
 
     private Instruction fetch() {
-        int byte1 = memory.get(PC * 8, 1);
-        int first = byte1 >> 4, second = byte1 & 0x0f;
-        switch(first) {
-            case 0: return new halt();
-            case 1: return new nop();
-            case 2:
-                switch (second) {
-                    case 0: return new rrmovl();
-                    case 1: return new cmovle();
-                    case 2: return new cmovl();
-                    case 3: return new cmove();
-                    case 4: return new cmovne();
-                    case 5: return new cmovge();
-                    case 6: return new cmovg();
-                }
-            case 3: return new irmovl();
-            case 4: return new rmmovl();
-            case 5: return new mrmovl();
-            case 6:
-                switch (second) {
-                    case 0: return new addl();
-                    case 1: return new subl();
-                    case 2: return new andl();
-                    case 3: return new xorl();
-                }
-            case 7:
-                switch (second) {
-                    case 0: return new jmp();
-                    case 1: return new jle();
-                    case 2: return new jl();
-                    case 3: return new je();
-                    case 4: return new jne();
-                    case 5: return new jge();
-                    case 6: return new jg();
-                }
-            case 8: return new call();
-            case 9: return new ret();
-            case 10: return new pushl();
-            case 11: return new popl();
-            default:
-                stat = 4;
-                String address = "address -> 0x" + Integer.toHexString(PC);
-                String content = "content -> 0x" + Integer.toHexString(byte1);
-                String msg = "Invalid instruction: " + address + content;
-                throw new IllegalStateException(msg);
+        byte first = (byte)memory.get(PC * 8, 1);
+
+        Instruction ins = InstructionDispatcher.getInstruction(first);
+        if (ins == null) {
+            stat = 4;
+            String address = "address -> 0x" + Integer.toHexString(PC);
+            String content = "content -> 0x" + Integer.toHexString(first);
+            String msg = "Invalid instruction: " + address + content;
+            throw new IllegalStateException(msg);
         }
+
+        return ins;
     }
 
     private void execute(Instruction instruction) {

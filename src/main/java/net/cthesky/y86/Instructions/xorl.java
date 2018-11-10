@@ -10,6 +10,12 @@ import net.cthesky.y86.Simulator.Y86Simulator;
  * All rights reserved.
  */
 public class xorl extends opl {
+
+    @Override
+    public byte firstByte() {
+        return (byte)0x63;
+    }
+
     @Override
     public int op(int a, int b) {
         return a ^ b;

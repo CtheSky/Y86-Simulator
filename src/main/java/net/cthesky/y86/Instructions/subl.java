@@ -10,6 +10,12 @@ import net.cthesky.y86.Simulator.Y86Simulator;
  * All rights reserved.
  */
 public class subl extends opl {
+
+    @Override
+    public byte firstByte() {
+        return (byte)0x61;
+    }
+
     @Override
     public int op(int a, int b) {
         return b - a;

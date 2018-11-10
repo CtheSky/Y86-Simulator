@@ -10,6 +10,12 @@ import net.cthesky.y86.Simulator.Y86Simulator;
  * All rights reserved.
  */
 public class rmmovl implements Instruction {
+
+    @Override
+    public byte firstByte() {
+        return (byte)0x40;
+    }
+
     @Override
     public void execute(Y86Simulator simulator) {
         int pc = simulator.PC;

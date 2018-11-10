@@ -10,6 +10,12 @@ import net.cthesky.y86.Simulator.Y86Simulator;
  * All rights reserved.
  */
 public class jg extends jXX {
+
+    @Override
+    public byte firstByte() {
+        return (byte)0x76;
+    }
+
     @Override
     public boolean cond(Y86Simulator simulator) {
         return simulator.SF == simulator.OF && !simulator.ZF;
